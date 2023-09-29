@@ -1,18 +1,3 @@
--- 코드를 입력하세요
--- select AUTHOR_ID, AUTHOR_NAME, CATEGORY, TOTAL_SALES
--- from BOOK
--- where to_char(PUBLISHED_DATE, 'YYYY-MM') = '2022-01'
--- and 
-
-
--- select *
--- from BOOK
--- inner join BOOK_SALES
--- on BOOK.BOOK_ID = BOOK_SALES.BOOK_ID
--- inner join AUTHOR
--- on BOOK.AUTHOR_ID = AUTHOR.AUTHOR_ID
--- where to_char(BOOK_SALES.SALES_DATE, 'YYYY-MM') = '2022-01'
-
 select B.AUTHOR_ID, A.AUTHOR_NAME, B.CATEGORY, SUM(BS.SALES* B.PRICE) AS TOTAL_SALES
 from BOOK_SALES BS 
 inner join BOOK B
@@ -22,11 +7,3 @@ on B.AUTHOR_ID = A.AUTHOR_ID
 where to_char(BS.SALES_DATE, 'YYYY-MM') = '2022-01'
 GROUP BY B.AUTHOR_ID, A.AUTHOR_NAME, B.CATEGORY
 order by B.AUTHOR_ID, B.CATEGORY DESC
-
-
--- select B.AUTHOR_ID, A.AUTHOR_NAME, B.CATEGORY
--- from BOOK B
--- inner join AUTHOR A
--- on B.AUTHOR_ID = A.AUTHOR_ID
-
-
