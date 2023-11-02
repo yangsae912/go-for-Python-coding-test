@@ -1,19 +1,21 @@
+#2581 소수 
 m = int(input())
 n = int(input())
-case = []
 
-for i in range(m, n + 1):
-  yaksoo = 0
-  for j in range(1, i + 1):
-    if i % j == 0: 
-      yaksoo += 1
-      if yaksoo > 2: # 시간 초과를 막기위함.
-        break
-  if yaksoo == 2: 
-    case.append(i)
+k = []
+for i in range(m, n+1):
+    y = 0 
+    for j in range(1, i+1):
+        if i % j == 0:
+            y += 1
+            if y > 2:
+                break
+    if y == 2:
+        k.append(i)
 
-if len(case) > 0:
-  print(sum(case))
-  print(min(case))
+if len(k) > 0:
+    print(sum(k))
+    print(min(k))
+
 else:
-  print(-1)
+    print(-1)
