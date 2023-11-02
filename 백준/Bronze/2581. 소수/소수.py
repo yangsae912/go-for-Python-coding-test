@@ -1,21 +1,26 @@
-#2581 소수 
+def is_prime(num):
+    if num <= 1:
+        return False
+    elif num <= 3:
+        return True
+    elif num % 3 == 0 or num % 2 == 0:
+        return False
+
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
 m = int(input())
 n = int(input())
-
-k = []
-for i in range(m, n+1):
-    y = 0 
-    for j in range(1, i+1):
-        if i % j == 0:
-            y += 1
-            if y > 2:
-                break
-    if y == 2:
-        k.append(i)
-
-if len(k) > 0:
-    print(sum(k))
-    print(min(k))
-
+case = []
+for num in range(m, n+1):
+    if is_prime(num):
+        case.append(num)
+if case:
+    print(sum(case))
+    print(min(case))
 else:
     print(-1)
