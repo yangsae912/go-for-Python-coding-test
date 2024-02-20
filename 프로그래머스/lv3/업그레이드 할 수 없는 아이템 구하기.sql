@@ -1,0 +1,33 @@
+-- case when 사용하면 null 값이 걸러지지 않기에 where 절에 써야함
+
+-- 1번 풀이
+
+SELECT 
+    ITEM_ID,
+    ITEM_NAME,
+    RARITY
+FROM ITEM_INFO
+WHERE ITEM_ID NOT IN 
+    (SELECT DISTINCT PARENT_ITEM_ID
+    FROM item_tree
+    WHERE PARENT_ITEM_ID is not null 
+  -- not null 조건 꼭 써줘야 함
+)
+ORDER BY ITEM_ID DESC
+
+
+-- 2번 풀이
+SELECT 
+    ITEM_ID,
+    ITEM_NAME,
+    RARITY
+FROM 
+    ITEM_INFO
+WHERE ITEM_NAME NOT IN 
+    (SELECT DISTINCT ITEM_NAME
+    FROM ITEM_TREE A
+    LEFT JOIN ITEM_INFO B 
+    ON A.PARENT_ITEM_ID = B.ITEM_ID
+    WHERE ITEM_NAME IS NOT NULL)
+ORDER BY ITEM_ID DESC
+
